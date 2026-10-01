@@ -1,0 +1,17 @@
+[project]
+name = "mlops-zoomcamp"
+version = "0.1.0"
+description = "Project to follow MLOps course from Zoomcamp"
+readme = "README.md"
+authors = [
+    { name = "Fabrizio Boninsegna", email = "boninsegnafabrizio@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+mlops-zoomcamp = "mlops_zoomcamp:main"
+
+[build-system]
+requires = ["uv_build>=0.12.13,<0.13.0"]
+build-backend = "uv_build"
