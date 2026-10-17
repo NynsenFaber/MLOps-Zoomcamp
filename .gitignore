@@ -8,3 +8,14 @@ wheels/
 
 # Virtual environments
 .venv
+
+# MLflow
+mlflow/
+
+# Model files
+*.bin
+
+# AWS
+AWS.md
+# Private notebooks
+notebooks/scenario-3.ipynb
