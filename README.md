@@ -160,3 +160,16 @@ os.environ["AWS_PROFILE"] = "" # fill in with your AWS profile (usually default 
 TRACKING_SERVER_HOST = "" # fill in with the public DNS of the EC2 instance
 mlflow.set_tracking_uri(f"http://{TRACKING_SERVER_HOST}:5000")
 ```
+
+# Workflow Orchestration
+There are tools to make sure that the entire pipeline works properly remotely.
+
+- Airflow
+- Prefect
+- Mage
+
+There are tools specific for ML Pipelines
+
+- Kubeflow pipelines
+- MLFlow pipelines
+
