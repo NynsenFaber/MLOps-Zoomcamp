@@ -6,7 +6,7 @@ test:
 # production ready server using gunicorn
 # and localhost binding
 start-app:
-	uv run gunicorn --bind=0.0.0.0:9696 predict:app
+	uv run --env-file .env gunicorn --bind=0.0.0.0:9696 predict:app
 
 build:
 	docker build -t duration-prediction-app-v1 .

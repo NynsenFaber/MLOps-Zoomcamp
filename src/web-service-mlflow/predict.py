@@ -1,14 +1,13 @@
-from pathlib import Path
 from skops.io import load
 import numpy as np
 import pandas as pd
 from flask import Flask, request, jsonify
+from mlflow.sklearn import load_model
 
-MODEL_PATH = Path(__file__).parent / "models" / "nyc_taxi_pipeline.skops"
-SKOPS_TRUSTED_TYPES = ["xgboost.core.Booster", "xgboost.sklearn.XGBRegressor"]
+REGISTERED_MODEL = "nyc_taxi_xgb_model"
+ALIAS = "champion"
 
-# loading the model using skops with trusted types
-model = load(MODEL_PATH, trusted=SKOPS_TRUSTED_TYPES)
+model = load_model(f"models:/{REGISTERED_MODEL}@{ALIAS}")
 
 def preprocess_input(ride: dict) -> pd.DataFrame:
     """Preprocess the input features into a DataFrame suitable for prediction."""
