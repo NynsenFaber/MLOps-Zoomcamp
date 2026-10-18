@@ -6,6 +6,12 @@ dist/
 wheels/
 *.egg-info
 
+# Private data
+*.env
+
+# models
+models/
+
 # Virtual environments
 .venv
 
@@ -20,3 +26,4 @@ AWS.md
 
 # Private notebooks
 notebooks/scenario-3.ipynb
+

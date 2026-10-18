@@ -2315,6 +2315,7 @@ dependencies = [
     { name = "prefect" },
     { name = "scikit-learn" },
     { name = "seaborn" },
+    { name = "skops" },
     { name = "xgboost" },
 ]
 
@@ -2336,6 +2337,7 @@ requires-dist = [
     { name = "prefect", specifier = ">=3.8.8" },
     { name = "scikit-learn", specifier = ">=1.9.1" },
     { name = "seaborn", specifier = ">=0.13.2" },
+    { name = "skops", specifier = ">=0.16.0" },
     { name = "xgboost", specifier = ">=3.4.1" },
 ]
 

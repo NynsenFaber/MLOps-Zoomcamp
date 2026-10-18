@@ -165,11 +165,32 @@ mlflow.set_tracking_uri(f"http://{TRACKING_SERVER_HOST}:5000")
 There are tools to make sure that the entire pipeline works properly remotely.
 
 - Airflow
-- Prefect
+- Prefect (used in the example)
 - Mage
 
 There are tools specific for ML Pipelines
 
 - Kubeflow pipelines
-- MLFlow pipelines
+
+## Prefect
+```python
+from prefect import task, flow
+```
+Use @taks and @flow decorators, then
+
+```bash
+prefect server start --port 4200
+```
+
+# Deployment
+
+- Batch model deployment (offline deployment): The model run regularly on new data or at regular intervals
+
+Usually we have a database, the model pulling the data from the database (like daily) and write the results on another database. 
+For example, churn detection algorithm may run once everyday and so they are deployed in batch.
+
+- Online deployment: It is always available, running all the time. We have **web service** (http), or **streaming**
+
+Predicting the duration of a taxi trip is a good example of a model that must be deployed online as a web service, so that it can be used when necessary.
+For streaming service we have **producer** and **consumers**, the producer pushes some events and the client acts based on that. An example could be streaming video applications, a user updates a video, starts an event (producer) and many clients activate, one for copyright violations, one for violence detection, etc...
 
