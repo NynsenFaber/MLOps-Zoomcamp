@@ -9,10 +9,10 @@ start-app:
 	uv run --env-file .env gunicorn --bind=0.0.0.0:9696 predict:app
 
 build:
-	docker build -t duration-prediction-app-v1 .
+	docker build -t duration-prediction-app-mlflow-v1 .
 
 # run in interactive mode with port mapping
 # --rm removes the container after it exits
 run:
-	docker run -it --rm -p 9696:9696 duration-prediction-app-v1
+	docker run -it --rm -p 9696:9696 duration-prediction-app-mlflow-v1
 
