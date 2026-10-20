@@ -1,11 +1,18 @@
 services:
 
   mlflow:
-    build: ./mlflow-server
+    image: ghcr.io/mlflow/mlflow:v3.17.1-full
+    command: >
+      mlflow server
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --artifacts-destination /mlflow/mlartifacts
+      --host 0.0.0.0
+      --port 5001
+      --allowed-hosts localhost:5001,127.0.0.1:5001,mlflow:5001
     ports:
       - "127.0.0.1:5001:5001"
     volumes:
-      - "./mlflow-server/mlflow:/mlflow-server/mlflow"
+      - "./mlflow:/mlflow"
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5001/health')"]
       interval: 5s
