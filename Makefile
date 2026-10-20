@@ -14,7 +14,7 @@ prefect-start:  ## Start the Prefect server on port 4200
 	uv run prefect server start --port 4200
 
 train:  ## Run the training flow (override with YEAR=... MONTH=...)
-	uv run --env-file .env src/duration-prediction-pipeline.py --year $(YEAR) --month $(MONTH)
+	uv run --env-file .env src/training/duration-prediction-pipeline.py --year $(YEAR) --month $(MONTH)
 
 build-run-mlflow:  ## Build and run the MLflow server in a Docker container
 	cd mlflow-server && \
