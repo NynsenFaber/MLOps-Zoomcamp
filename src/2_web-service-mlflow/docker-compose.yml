@@ -1,3 +1,4 @@
+name: mlops-nyc-taxi-pipeline
 services:
 
   mlflow:
@@ -5,23 +6,22 @@ services:
     command: >
       mlflow server
       --backend-store-uri sqlite:////mlflow/mlflow.db
-      --artifacts-destination /mlflow/mlartifacts
+      --artifacts-destination ../../mlflow/mlartifacts
       --host 0.0.0.0
       --port 5001
       --allowed-hosts localhost:5001,127.0.0.1:5001,mlflow:5001
     ports:
       - "127.0.0.1:5001:5001"
     volumes:
-      - "./mlflow:/mlflow"
+      - "../../mlflow:/mlflow"
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5001/health')"]
       interval: 5s
       timeout: 3s
       retries: 10
-
     
   web-service-mlflow:
-    build: ./src/web-service-mlflow
+    build: .
     environment:
       MLFLOW_TRACKING_URI: http://mlflow:5001
     ports:
