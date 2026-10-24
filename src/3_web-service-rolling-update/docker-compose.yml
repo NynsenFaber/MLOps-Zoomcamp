@@ -1,0 +1,34 @@
+name: mlops-nyc-taxi-pipeline
+services:
+
+  mlflow-server:
+    image: ghcr.io/mlflow/mlflow:v3.17.1-full
+    command: >
+      mlflow server
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --artifacts-destination /mlflow/mlartifacts
+      --host 0.0.0.0
+      --port 5001
+      --allowed-hosts localhost:5001,mlflow-server:5001
+    ports:
+      - "127.0.0.1:5001:5001"
+    volumes:
+      - "../../mlflow:/mlflow"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5001/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  prefect-server:
+    image: prefecthq/prefect:3-latest
+    command: prefect server start --host 0.0.0.0 --port 4200
+    environment:
+      - PREFECT_API_URL=http://localhost:4200/api
+    ports:
+      - "127.0.0.1:4200:4200"
+    volumes:
+      - prefect-data:/root/.prefect
+
+volumes:
+  prefect-data:
